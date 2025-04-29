@@ -18,6 +18,7 @@ default: &default
  pool: 5
  username: postgres
  password: samrat11@
+ url: <%= ENV["DATABASE_URL"] %>
  host: localhost
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling

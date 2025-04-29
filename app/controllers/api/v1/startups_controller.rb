@@ -44,7 +44,8 @@ class Api::V1::StartupsController < ApplicationController
   end
 
   def myStartupsInformation
-    @startups = Startup.where(user_id:params[:user_id])
+    @startups = Startup.left_joins(:upvotes).where(user_id: params[:user_id]).group("startups.id").select("startups.*, count(upvotes.id) as upvotes_count").order("upvotes_count desc")
+  
     if(@startups)
       render json: @startups, status: :ok
     else
